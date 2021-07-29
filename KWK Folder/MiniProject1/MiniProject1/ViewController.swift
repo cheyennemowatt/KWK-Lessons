@@ -18,10 +18,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var pool: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        fall.isHidden = true
+        smoothies.isHidden = true
+        pool.isHidden = true
     }
   
     @IBAction func reveal(_ sender: UIButton) {
+        fall.isHidden = false
+        smoothies.isHidden = false
+        pool.isHidden = false
     }
     
 }
