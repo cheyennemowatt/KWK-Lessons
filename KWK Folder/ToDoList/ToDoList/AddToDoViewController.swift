@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class AddToDoViewController: UIViewController {
     var previousToDoTVC = ToDoTableViewController()
 
@@ -21,15 +21,22 @@ class AddToDoViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
-        let newToDo = ToDoClass()
-
-             if let checkForInput = descriptionInput.text {
-                  newToDo.description = checkForInput
-                  newToDo.important = switchInput.isOn
-             }
-        previousToDoTVC.listOfToDo.append(newToDo)
-             previousToDoTVC.tableView.reloadData()
+        guard let accessToCoreData = UIApplication.shared.delegate as? AppDelegate else {
+            return
+            }
+        let dataFromCoreData = accessToCoreData.persistentContainer.viewContext
+        let newToDo = ToDoCD(context: dataFromCoreData)
         navigationController?.popViewController(animated: true)
+        //     let newToDo = ToDoClass()
+
+    //         if let checkForInput = descriptionInput.text {
+    //              newToDo.description = checkForInput
+   //               newToDo.important = switchInput.isOn
+             }
+    
+        //previousToDoTVC.listOfToDo.append(newToDo)
+             //previousToDoTVC.tableView.reloadData()
+
 
     }
     
@@ -43,4 +50,4 @@ class AddToDoViewController: UIViewController {
     }
     */
 
-}
+
